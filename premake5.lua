@@ -20,12 +20,13 @@ project "Hazel"
 	
 	files
 	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/Hazel/**.h",
+		"%{prj.name}/Hazel/**.cpp",
 	}
 
 	includedirs
 	{
+		"%{prj.name}/Hazel",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
@@ -75,7 +76,7 @@ project "Sandbox"
 	includedirs
 	{
 		"Hazel/vendor/spdlog/include",
-		"Hazel/src"
+		"Hazel/Hazel"
 	}
 
 	links
