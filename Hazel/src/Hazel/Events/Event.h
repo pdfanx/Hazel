@@ -1,9 +1,7 @@
 #pragma once
+#include "hzpch.h"
+#include "Hazel/Core.h"
 
-#include "Core.h"
-
-#include <string>
-#include <functional>
 
 namespace Hazel {
 	enum class EventType
@@ -34,6 +32,7 @@ namespace Hazel {
 
 	class HAZEL_API Event
 	{
+		friend inline std::ostream& operator<<(std::ostream& os, const Event& e);
 	public:
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
