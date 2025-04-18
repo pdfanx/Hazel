@@ -55,7 +55,7 @@ namespace Hazel
 	public:
 		inline int GetMouseButton() const { return m_Button; }
 
-
+		
 		EVENT_CLASS_CTAEGORY(EventCategoryMouse | EventCategoryInput)
 
 	protected:

@@ -7,7 +7,7 @@ namespace Hazel {
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
-
+		EVENT_CLASS_CTAEGORY(EventCategoryInput | EventCategoryKeyboard);
 	protected:
 		KeyEvent(int keycode)
 			: m_KeyCode(keycode) { }
@@ -44,7 +44,7 @@ namespace Hazel {
 	class HAZEL_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyReleasedEvent(int keycode, int repeatCount)
+		KeyReleasedEvent(int keycode)
 			: KeyEvent(keycode)
 		{
 
