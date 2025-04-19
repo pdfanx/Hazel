@@ -22,6 +22,16 @@ namespace Hazel {
 	{
 	}
 
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerSatck.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* layer)
+	{
+		m_LayerSatck.PushOverlay(layer);
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
@@ -29,6 +39,14 @@ namespace Hazel {
 
 
 		HZ_CORE_TRACE("{0}", e.ToString());
+
+		// 优先处理上层事件
+		for (auto it = m_LayerSatck.end(); it != m_LayerSatck.begin(); )
+		{
+			(*--it)->OnEvent(e);
+			if(e.m_Handled)
+				break;
+		}
 	}
 
 	void Application::Run()
@@ -38,6 +56,9 @@ namespace Hazel {
 		{
 			glClearColor(1, 0, 1, 0);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerSatck)
+				layer->OnUpdate();
 
 			m_Window->OnUpdate();
 		}

@@ -64,17 +64,17 @@ project "Hazel"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		buildoptions "/utf-8"
+		buildoptions {"/MDd","/utf-8"}
 		symbols "ON"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		buildoptions "/utf-8"
+		buildoptions {"/MD","/utf-8"}
 		optimize "ON"
 
 	filter "configurations:DIST"
 		defines "HZ_DIST"
-		buildoptions "/utf-8"
+		buildoptions {"/MD","/utf-8"}
 		optimize "ON"
 
 
@@ -115,15 +115,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		buildoptions "/utf-8"
+		buildoptions {"/MDd","/utf-8"}
 		symbols "ON"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		buildoptions "/utf-8"
+		buildoptions {"/MD","/utf-8"}
 		optimize "ON"
 
 	filter "configurations:DIST"
 		defines "HZ_DIST"
-		buildoptions "/utf-8"
+		buildoptions {"/MD","/utf-8"}
 		optimize "ON"
