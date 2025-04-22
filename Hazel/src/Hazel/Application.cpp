@@ -47,7 +47,6 @@ namespace Hazel {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
 
-
 		HZ_CORE_TRACE("{0}", e.ToString());
 
 		// 优先处理上层事件
