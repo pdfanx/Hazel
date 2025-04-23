@@ -24,6 +24,7 @@ project "Hazel"
 	location "Hazel"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" ..  outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" ..  outputdir .. "/%{prj.name}")
@@ -56,7 +57,6 @@ project "Hazel"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -73,17 +73,20 @@ project "Hazel"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		buildoptions {"/MDd","/utf-8"}
+		runtime "Debug"
+		buildoptions "/utf-8"
 		symbols "ON"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		buildoptions {"/MD","/utf-8"}
+		runtime "Release"
+		buildoptions "/utf-8"
 		optimize "ON"
 
 	filter "configurations:DIST"
 		defines "HZ_DIST"
-		buildoptions {"/MD","/utf-8"}
+		runtime "Release"
+		buildoptions "/utf-8"
 		optimize "ON"
 
 
@@ -91,7 +94,11 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-
+	staticruntime "off" 
+	-- static runtime is off for shared libraries
+	-- static runtime is on Set <RuntimeLibrary> to MultiThreaded (/MT) for static runtime
+	-- static runtime is off Set <RuntimeLibrary> to MultiThreadedDLL (/MD) for dynamic runtime
+	
 	targetdir ("bin/" ..  outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" ..  outputdir .. "/%{prj.name}")
 	
@@ -114,7 +121,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -124,15 +130,18 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		buildoptions {"/MDd","/utf-8"}
+		runtime "Debug"
+		buildoptions "/utf-8"
 		symbols "ON"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		buildoptions {"/MD","/utf-8"}
+		runtime "Release"
+		buildoptions "/utf-8"
 		optimize "ON"
 
 	filter "configurations:DIST"
 		defines "HZ_DIST"
-		buildoptions {"/MD","/utf-8"}
+		runtime "Release"
+		buildoptions "/utf-8"
 		optimize "ON"
