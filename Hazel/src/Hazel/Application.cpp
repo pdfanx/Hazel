@@ -1,8 +1,8 @@
 #include "hzpch.h"
 #include "Application.h"
 
-
 #include "Log.h"
+#include "Input.h"
 
 #include <glad/glad.h>
 
@@ -61,13 +61,16 @@ namespace Hazel {
 	void Application::Run()
 	{
 
-		while (m_Running) 
+		while (m_Running)
 		{
 			glClearColor(1, 0, 1, 0);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerSatck)
 				layer->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
+			HZ_CORE_TRACE("{0},{1}", x, y);
 
 			m_Window->OnUpdate();
 		}
