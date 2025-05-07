@@ -1,4 +1,4 @@
-#include "hzpch.h"
+ï»¿#include "hzpch.h"
 #include "Application.h"
 
 #include "Log.h"
@@ -18,7 +18,7 @@ namespace Hazel {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 
-		// ÉèÖÃÊÂ¼þ»Øµ÷
+		// è®¾ç½®äº‹ä»¶å›žè°ƒ
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 
 		m_ImGuiLayer = new ImGuiLayer();
@@ -41,7 +41,7 @@ namespace Hazel {
 		layer->OnAttach();
 	}
 
-	// ÊÂ¼þ´¦Àí
+	// äº‹ä»¶å¤„ç†
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
@@ -49,7 +49,7 @@ namespace Hazel {
 
 		// HZ_CORE_TRACE("{0}", e.ToString());
 
-		// ÓÅÏÈ´¦ÀíÉÏ²ãÊÂ¼þ
+		// ä¼˜å…ˆå¤„ç†ä¸Šå±‚äº‹ä»¶
 		for (auto it = m_LayerSatck.end(); it != m_LayerSatck.begin(); )
 		{
 			(*--it)->OnEvent(e);

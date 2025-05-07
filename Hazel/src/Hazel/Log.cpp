@@ -1,4 +1,4 @@
-#include "hzpch.h"
+ï»¿#include "hzpch.h"
 
 #include "Log.h"
 
@@ -9,12 +9,12 @@ namespace Hazel
 
 	void Log::Init()
 	{
-		// ÉèÖÃÊä³ö¸ñÊ½
+		// è®¾ç½®è¾“å‡ºæ ¼å¼
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 
-		// ´´½¨¶àÏß³ÌÈÕÖ¾¼ÇÂ¼Æ÷
+		// åˆ›å»ºå¤šçº¿ç¨‹æ—¥å¿—è®°å½•å™¨
 		s_CoreLogger = spdlog::stdout_color_mt("HAZEL");
-		s_CoreLogger->set_level(spdlog::level::trace);	// ÉèÖÃ¼ÇÂ¼Æ÷¼¶±ð
+		s_CoreLogger->set_level(spdlog::level::trace);	// è®¾ç½®è®°å½•å™¨çº§åˆ«
 
 		s_ClientLogger = spdlog::stdout_color_mt("APP");
 		s_ClientLogger->set_level(spdlog::level::trace);

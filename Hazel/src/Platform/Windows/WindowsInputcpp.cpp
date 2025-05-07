@@ -1,4 +1,4 @@
-#include "hzpch.h"
+ï»¿#include "hzpch.h"
 
 #include "WindowsInput.h"
 #include "Hazel/Application.h"
@@ -35,7 +35,7 @@ namespace Hazel
 	bool WindowsInput::GetMouseXImpl()
 	{
 		// C++ 17 
-		auto [x, y] = GetMousePositionImpl();	// ·µ»ØpairÀàÐÍ
+		auto [x, y] = GetMousePositionImpl();	// è¿”å›žpairç±»åž‹
 		return x;
 	}
 

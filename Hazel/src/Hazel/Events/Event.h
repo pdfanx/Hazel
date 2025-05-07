@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "hzpch.h"
 #include "Hazel/Core.h"
 
@@ -23,7 +23,7 @@ namespace Hazel {
 		EventCategoryMouseButton     =BIT(4)
 	};
 
-// ##ÊÇÁ¬½Ó·û£¬½«Ç°ºóÁ½¸ö¶«Î÷Á¬½Ó³ÉÒ»¸ö´Ê£»#µÄÓÃ·¨ÊÇ¸ºÔğ½«ÆäºóÃæµÄ¶«Î÷×ª»¯Îª×Ö·û´®					
+// ##æ˜¯è¿æ¥ç¬¦ï¼Œå°†å‰åä¸¤ä¸ªä¸œè¥¿è¿æ¥æˆä¸€ä¸ªè¯ï¼›#çš„ç”¨æ³•æ˜¯è´Ÿè´£å°†å…¶åé¢çš„ä¸œè¥¿è½¬åŒ–ä¸ºå­—ç¬¦ä¸²					
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() {return EventType::##type;}\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
@@ -38,7 +38,7 @@ namespace Hazel {
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
 
-		virtual std::string ToString() const { return GetName(); }	// µ÷ÊÔ
+		virtual std::string ToString() const { return GetName(); }	// è°ƒè¯•
 
 		inline bool IsInCategory(EventCategory category)
 		{
@@ -65,7 +65,7 @@ namespace Hazel {
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);	// ÀàĞÍ×ª»»
+				m_Event.m_Handled = func(*(T*)&m_Event);	// ç±»å‹è½¬æ¢
 				return true;
 			}
 			return false;

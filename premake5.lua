@@ -26,9 +26,10 @@ group ""
 
 project "Hazel"
 	location "Hazel"
-	kind "SharedLib"
+	kind "StaticLib" -- or "SharedLib" for dynamic library
 	language "C++"
-	staticruntime "off"
+	staticruntime "on"
+	cppdialect "C++17"
 
 	targetdir ("bin/" ..  outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" ..  outputdir .. "/%{prj.name}")
@@ -42,6 +43,11 @@ project "Hazel"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS",
 	}
 
 	includedirs
@@ -63,7 +69,6 @@ project "Hazel"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -73,35 +78,32 @@ project "Hazel"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-		}
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
 		runtime "Debug"
 		buildoptions "/utf-8"
-		symbols "ON"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
 		runtime "Release"
 		buildoptions "/utf-8"
-		optimize "ON"
+		optimize "on"
 
 	filter "configurations:DIST"
 		defines "HZ_DIST"
 		runtime "Release"
 		buildoptions "/utf-8"
-		optimize "ON"
+		optimize "on"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off" 
+	staticruntime "on"
+	cppdialect "C++17"
 	-- static runtime is off for shared libraries
 	-- static runtime is on Set <RuntimeLibrary> to MultiThreaded (/MT) for static runtime
 	-- static runtime is off Set <RuntimeLibrary> to MultiThreadedDLL (/MD) for dynamic runtime
@@ -129,7 +131,7 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
+
 		systemversion "latest"
 
 		defines
@@ -141,16 +143,16 @@ project "Sandbox"
 		defines "HZ_DEBUG"
 		runtime "Debug"
 		buildoptions "/utf-8"
-		symbols "ON"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
 		runtime "Release"
 		buildoptions "/utf-8"
-		optimize "ON"
+		optimize "on"
 
 	filter "configurations:DIST"
 		defines "HZ_DIST"
 		runtime "Release"
 		buildoptions "/utf-8"
-		optimize "ON"
+		optimize "on"
