@@ -23,6 +23,38 @@ namespace Hazel {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+
+		// 28.First triangle
+		// Vertex Array
+		// Vertex Buffer
+		// Index Buffer
+		// Shader
+
+		// 创建顶点数组
+		glGenVertexArrays(1,&m_VertexArray);
+		glBindVertexArray(m_VertexArray);
+
+		// 创建顶点缓冲区
+		glGenBuffers(1, &m_VertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER,m_VertexBuffer);
+
+		float vertices[3 * 3] = {
+			-0.5f,	-0.5f,	0.0f,
+			0.5f,	-0.5f,	0.0f,
+			0.0f,	0.5f,	0.0f
+		};
+		// 将数据上传到GPU
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);	// GL_STATIC_DRAW 不会每帧上传数据
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+		// 创建索引缓冲区
+		glGenBuffers(1, &m_IndexBuffer);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);	// 绘制顺序
+
+		unsigned int indices[3] = { 0,1,2 };
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 	}
 
 	Application::~Application()
@@ -63,8 +95,12 @@ namespace Hazel {
 
 		while (m_Running)
 		{
-			glClearColor(1, 0, 1, 0);
+			glClearColor(0.2f, 0.2f, 0.2f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			// 绘制
+			glBindVertexArray(m_VertexArray);
+			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerSatck)
 				layer->OnUpdate();
