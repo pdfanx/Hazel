@@ -13,7 +13,6 @@ namespace Hazel {
 	{
 		// 创建缓冲区
 		glCreateBuffers(1, &m_RendererID);
-		//glGenBuffers(1, &m_VertexBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		
 		// 上传数据到GPU
