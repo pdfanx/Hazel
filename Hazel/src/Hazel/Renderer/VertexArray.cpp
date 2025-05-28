@@ -10,9 +10,9 @@ Hazel::VertexArray* VertexArray::Create()
 {
 	switch (Renderer::GetAPI())
 	{
-	case RendererAPI::None:		HZ_CORE_ASSERT(false, "return nullptr");
+	case RendererAPI::API::None:		HZ_CORE_ASSERT(false, "return nullptr");
 
-	case RendererAPI::OpenGL:	return new OpenGLVertexArray(); // Ensure OpenGLVertexArray is defined
+	case RendererAPI::API::OpenGL:		return new OpenGLVertexArray(); // Ensure OpenGLVertexArray is defined
 	}
 
 	HZ_CORE_ASSERT(false, "UnKnown RendererAPI!");
